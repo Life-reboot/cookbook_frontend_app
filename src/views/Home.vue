@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <ul>
+      <li v-for="x in errors">{{ x }}</li>
+    </ul>
     <h1>New recipe</h1>
     <div>
       Title:
@@ -59,7 +62,7 @@ var axios = require("axios");
 export default {
   data: function() {
     return {
-      message: "Welcome to Vue.js!!!!",
+      errors: [],
       recipes: [],
       currentRecipe: {},
       newRecipeTitle: "",
@@ -87,10 +90,16 @@ export default {
         input_image_url: this.newRecipeImageUrl,
       };
 
-      axios.post("/api/recipes", params).then(response => {
-        console.log("Success!!!", response.data);
-        this.recipes.push(response.data);
-      });
+      axios
+        .post("/api/recipes", params)
+        .then(response => {
+          console.log("Success!!!", response.data);
+          this.recipes.push(response.data);
+        })
+        .catch(error => {
+          console.log(error.response.data.errors);
+          this.errors = error.response.data.errors;
+        });
     },
     showRecipe: function(recipe) {
       if (this.currentRecipe === recipe) {
