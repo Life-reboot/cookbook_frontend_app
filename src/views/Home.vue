@@ -21,7 +21,7 @@
     <div v-for="recipe in recipes">
       <h2>Title: {{ recipe.title }}</h2>
       <button v-on:click="destroyRecipe(recipe)">Destroy</button>
-      <button v-on:click="currentRecipe = recipe">Show more info</button>
+      <button v-on:click="showRecipe(recipe)">Show more info</button>
       <div v-if="recipe === currentRecipe">
         <p>Image: {{ recipe.image_url }}</p>
         <img v-bind:src="recipe.image_url" alt />
@@ -91,6 +91,13 @@ export default {
         console.log("Success!!!", response.data);
         this.recipes.push(response.data);
       });
+    },
+    showRecipe: function(recipe) {
+      if (this.currentRecipe === recipe) {
+        this.currentRecipe = {};
+      } else {
+        this.currentRecipe = recipe;
+      }
     },
     updateRecipe: function(recipe) {
       var params = {
