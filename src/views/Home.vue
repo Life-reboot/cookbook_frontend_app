@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
+    <h1>New recipe</h1>
+    <button v-on:click="createRecipe()">Create</button>
+
+    <h1>All recipes</h1>
     <div v-for="recipe in recipes">
       <h2>Title: {{ recipe.title }}</h2>
       <p>Image: {{ recipe.image_url }}</p>
@@ -33,6 +36,22 @@ export default {
       console.log("The recipes: ", this.recipes);
     });
   },
-  methods: {},
+  methods: {
+    createRecipe: function() {
+      var params = {
+        input_title: "Awesome title",
+        input_chef: "Awesome chef",
+        input_prep_time: 34,
+        input_ingredients: "Awesome ingedients",
+        input_directions: "Awesome directions",
+        input_image_url: "Awesome image_url",
+      };
+
+      axios.post("/api/recipes", params).then(response => {
+        console.log("Success!!!", response.data);
+        this.recipes.push(response.data);
+      });
+    },
+  },
 };
 </script>
