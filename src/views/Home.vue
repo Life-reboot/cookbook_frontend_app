@@ -1,7 +1,21 @@
 <template>
   <div class="home">
     <h1>New recipe</h1>
-    <button v-on:click="createRecipe()">Create</button>
+    <div>
+      Title:
+      <input type="text" v-model="newRecipeTitle" />
+      Chef:
+      <input type="text" v-model="newRecipeChef" />
+      Prep time:
+      <input type="text" v-model="newRecipePrepTime" />
+      Ingredients:
+      <input type="text" v-model="newRecipeIngredients" />
+      Directions:
+      <input type="text" v-model="newRecipeDirections" />
+      Image url:
+      <input type="text" v-model="newRecipeImageUrl" />
+      <button v-on:click="createRecipe()">Create</button>
+    </div>
 
     <h1>All recipes</h1>
     <div v-for="recipe in recipes">
@@ -28,6 +42,12 @@ export default {
     return {
       message: "Welcome to Vue.js!!!!",
       recipes: [],
+      newRecipeTitle: "",
+      newRecipeChef: "",
+      newRecipePrepTime: "",
+      newRecipeIngredients: "",
+      newRecipeDirections: "",
+      newRecipeImageUrl: "",
     };
   },
   created: function() {
@@ -39,12 +59,12 @@ export default {
   methods: {
     createRecipe: function() {
       var params = {
-        input_title: "Awesome title",
-        input_chef: "Awesome chef",
-        input_prep_time: 34,
-        input_ingredients: "Awesome ingedients",
-        input_directions: "Awesome directions",
-        input_image_url: "Awesome image_url",
+        input_title: this.newRecipeTitle,
+        input_chef: this.newRecipeChef,
+        input_prep_time: this.newRecipePrepTime,
+        input_ingredients: this.newRecipeIngredients,
+        input_directions: this.newRecipeDirections,
+        input_image_url: this.newRecipeImageUrl,
       };
 
       axios.post("/api/recipes", params).then(response => {
