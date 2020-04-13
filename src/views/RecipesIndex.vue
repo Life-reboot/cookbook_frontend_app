@@ -5,6 +5,9 @@
       <h2>{{ recipe.title }}</h2>
       <p>Chef: {{ recipe.chef }}</p>
       <img v-bind:src="recipe.image_url" alt />
+      <div>
+        <a v-bind:href="`/recipes/${recipe.id}`">More info</a>
+      </div>
     </div>
   </div>
 </template>
