@@ -7,6 +7,8 @@
     <p>Directions: {{ recipe.Directions }}</p>
     <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit recipe</a>
     <br>
+    <button v-on:click="destroyRecipe(recipe)">Destroy recipe</button>
+    <br>
     <a href="/recipes">Back to all recipes</a>
   </div>
 </template>
@@ -28,6 +30,11 @@ export default {
       axios.get("/api/recipes/" + this.$route.params.id).then(response => {
         console.log("Get one recipes: ", response);
         this.recipe = response.data;
+      });
+    },
+    destroyRecipe: function(recipe) {
+      axios.delete("/api/recipes/" + this.$route.params.id).then(response => {
+        this.$router.push("/recipes");
       });
     },
   },
