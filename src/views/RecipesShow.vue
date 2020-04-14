@@ -2,14 +2,14 @@
   <div>
     <h1>Recipe info</h1>
     <h2>Title: {{ recipe.title }}</h2>
-    <img v-bind:src="recipe.image_url" alt="">
+    <img v-bind:src="recipe.image_url" alt="" />
     <p>Ingredients: {{ recipe.ingredients }}</p>
     <p>Directions: {{ recipe.Directions }}</p>
-    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit recipe</a>
-    <br>
-    <button v-on:click="destroyRecipe(recipe)">Destroy recipe</button>
-    <br>
-    <a href="/recipes">Back to all recipes</a>
+    <a class="btn btn-primary" v-bind:href="`/recipes/${recipe.id}/edit`">Edit recipe</a>
+    <br />
+    <button class="btn btn-primary" v-on:click="destroyRecipe(recipe)">Destroy recipe</button>
+    <br />
+    <a class="btn btn-primary" href="/recipes">Back to all recipes</a>
   </div>
 </template>
 
