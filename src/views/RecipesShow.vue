@@ -5,6 +5,8 @@
     <img v-bind:src="recipe.image_url" alt="">
     <p>Ingredients: {{ recipe.ingredients }}</p>
     <p>Directions: {{ recipe.Directions }}</p>
+    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit recipe</a>
+    <br>
     <a href="/recipes">Back to all recipes</a>
   </div>
 </template>
