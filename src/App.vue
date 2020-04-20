@@ -82,6 +82,6 @@
 <style>
 body {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  background-image: url("./assets/more-leaves-on-green.png");
+  background-image: url("./assets/triangle-mosaic.png");
 }
 </style>
