@@ -21,7 +21,7 @@
     </div>
 
     <h1>All recipes</h1>
-    <div v-for="recipe in recipes">
+    <div v-for="recipe in recipes" v-bind:class="{selected: recipe === currentRecipe}">
       <h2>Title: {{ recipe.title }}</h2>
       <button v-on:click="destroyRecipe(recipe)">Destroy</button>
       <button v-on:click="showRecipe(recipe)">Show more info</button>
@@ -53,6 +53,12 @@
 <style>
 img {
   width: 300px;
+}
+
+.selected {
+  color: white;
+  background-color: steelblue;
+  transition: background-color 1s ease;
 }
 </style>
 
