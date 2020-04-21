@@ -2,7 +2,10 @@
   <div class="recipes-index">
     <h1>All recipes</h1>
     Search:
-    <input type="text" v-model="filterText" />
+    <input type="text" v-model="filterText" list="titles" />
+    <datalist id="titles">
+      <option v-for="recipe in recipes">{{ recipe.title }}</option>
+    </datalist>
     <div v-for="recipe in filterBy(recipes, filterText, 'title', 'chef')">
       <h2>{{ recipe.title }}</h2>
       <p>Created at {{ relativeDate(recipe.created_at) }}</p>
