@@ -23,7 +23,7 @@
     <h1>All recipes</h1>
     <div v-for="recipe in recipes" v-bind:class="{selected: recipe === currentRecipe}">
       <h2>Title: {{ recipe.title }}</h2>
-      <button v-on:click="destroyRecipe(recipe)">Destroy</button>
+      <button v-if="$parent.userId === recipe.user_id" v-on:click="destroyRecipe(recipe)">Destroy</button>
       <button v-on:click="showRecipe(recipe)">Show more info</button>
       <div v-if="recipe === currentRecipe">
         <p>Image: {{ recipe.image_url }}</p>

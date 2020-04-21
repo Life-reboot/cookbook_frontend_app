@@ -63,14 +63,19 @@ export default {
   data: function() {
     return {
       jwt: null,
+      userId: null,
     };
   },
   created: function() {
     this.setJwt();
+    this.setUserId();
   },
   methods: {
     setJwt: function() {
       this.jwt = localStorage.jwt;
+    },
+    setUserId: function() {
+      this.userId = parseInt(localStorage.user_id);
     },
   },
 };
