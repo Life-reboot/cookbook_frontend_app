@@ -1,7 +1,9 @@
 <template>
   <div class="recipes-index">
     <h1>All recipes</h1>
-    <div v-for="recipe in recipes">
+    Search:
+    <input type="text" v-model="filterText" />
+    <div v-for="recipe in filterBy(recipes, filterText, 'title', 'chef')">
       <h2>{{ recipe.title }}</h2>
       <p>Created at {{ relativeDate(recipe.created_at) }}</p>
       <p>Chef: {{ recipe.chef }}</p>
@@ -16,11 +18,14 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       recipes: [],
+      filterText: "",
     };
   },
   created: function() {
